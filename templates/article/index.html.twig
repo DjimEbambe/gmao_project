@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="container mx-5 px-4">
+        <h1 class="my-2">Liste des articles de magasin</h1>
+        <table class="table table-striped table-bordered table-sm">
+            <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Emplacement</th>
+                <th>Nom</th>
+                <th>Quantité</th>
+                <th>Description</th>
+                <th>Fournisseur</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for intervation in article %}
+                <tr>
+                    <td>{{ intervation.id }}</td>
+                    <td>{{ intervation.emplacement }}</td>
+                    <td>{{ intervation.name }}</td>
+                    <td>{{ intervation.quantity }}</td>
+                    <td>{{ intervation.description }}</td>
+                    <td>{{ intervation.fournisseur }}</td>
+                    <td>{{ intervation.createdAt ? intervation.createdAt|date('Y-m-d') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+{% endblock %}

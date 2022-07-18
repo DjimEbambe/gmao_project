@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Intervation{% endblock %}
+
+{% block content %}
+    <h1>Intervation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ intervation.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ intervation.name }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ intervation.createdAt ? intervation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DureeSec</th>
+                <td>{{ intervation.time |date('s') }}</td>
+            </tr>
+            <tr>
+                <th>DureeMin</th>
+                <td>{{ intervation.time |date('i') }}</td>
+            </tr>
+            <tr>
+                <th>DureeHeure</th>
+                <td>{{ intervation.time |date('H') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('intervation_index') }}">back to list</a>
+
+    <a href="{{ path('intervation_edit', {'id': intervation.id}) }}">edit</a>
+
+    {{ include('intervation/_delete_form.html.twig') }}
+{% endblock %}

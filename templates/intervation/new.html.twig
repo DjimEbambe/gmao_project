@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Intervention{% endblock %}
+{% block stylesheets_2 %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+    <div class="container mt-1 mb-1 mt-5">
+        <div class="position-relative m-4">
+            <div class="progress" style="height: 5px;">
+                <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 6rem; height:2rem;">Créer<i class="bi bi-check"></i></button>
+            <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 6rem; height:2rem;">Article? <i class="bi bi-check"></i></button>
+            <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 6rem; height:2rem;">Bon? <i class="bi bi-check"></i></button>
+        </div>
+    </div>
+    {{ include('intervation/_form.html.twig') }}
+
+{% endblock %}
+
+{% block javascripts_2 %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(function () {
+            $('.select-user').select2()
+        })
+    </script>
+{% endblock %}

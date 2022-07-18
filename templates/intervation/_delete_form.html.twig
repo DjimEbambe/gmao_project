@@ -1,0 +1,8 @@
+<form class="mt-2" method="post" action="{{ path('intervation_delete', {'id': intervation.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer définitivement cette intervention?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ intervation.id) }}">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-danger btn-sm me-md-2">Supprimer</button>
+        <a class="btn btn-primary btn-sm" href="{{ path('intervation_index') }}">Retour</a>
+    </div>
+</form>
+

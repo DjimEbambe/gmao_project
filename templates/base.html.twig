@@ -1,19 +1,153 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Djim EBAMBE">
+        <meta name="generator" content="Hugo 0.84.0">
+        <title>Projet Gmao</title>
+        <title>{% block title %}Project_GMAO!{% endblock %}</title>
+
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+        {% block stylesheets_2 %}
+        {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
+
+        {% block head %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Accueil</a>
+                        </li>
+                       {#
+                           <li class="nav-item">
+                                <a class="nav-link" href="#">Personnel</a>
+                           </li>
+                       #}
+
+                        {% if is_granted('ROLE_ADMIN')  %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('admin') }}" tabindex="-1" aria-disabled="true">Admin</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <div class="d-flex">
+
+                    </div>
+                </div>
+                <form class="ms-auto d-flex">
+                    <ul class="nav nav-tabs d-md-flex">
+                        {% if  app.user  %}
+                            <div class="d-flex  bd-highlight">
+                                <nav class="nav">
+                                    <div class="nav-item btn-group">
+                                        <button type="button" class="btn btn-secondary rounded-circle" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:0.73rem">
+                                            {{ app.user.firstname|slice(0, 2)}}
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item" href="/admin">Panneau d'administration</a></li>
+                                            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                        {% else  %}
+                            <nav class="nav">
+                                <div class="nav-item">
+                                    <a class="nav-link {% if  app.request.get('_route')=='app_login'  %} active {% endif %}"  href="{{ path('app_login') }}">Connexion</a>
+                                </div><div class="nav-item">
+                                    <a class="nav-link {% if  app.request.get('_route')=='register'  %} active {% endif %}" href="{{ path('register') }}">Inscription</a>
+                                </div>
+                            </nav>
+                        {% endif %}
+                    </ul>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+        <div class="container-fluid" id="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+
+        <!-- footer -->
+        <footer class="footer mt-auto py-3 mt-4" id="footer">
+            <div class="footer-left col-md-4 col-sm-6">
+                <p class="about">
+                    <span> A propos </span> Ut congue augue non tellus bibendum, in varius tellus condimentum. In scelerisque nibh tortor, sed rhoncus odio condimentum in. Sed sed est ut sapien ultrices eleifend.
+                </p>
+                <div class="icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                    <a href="#"><i class="bi bi-github"></i></a>
+                    <a href="#"><i class="bi bi-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-center col-md-4 col-sm-6">
+                <div>
+                    <p><span> Adresse</span> </p>
+                </div>
+                <div>
+                    <p>Mission catholique de Kimwenza</p><br>
+                    <p>Commune de Mont Ngafula</p><br>
+                    <p>Kinshasa, RD congo</p>
+                </div>
+                <div>
+                    <p> +243 89 81 11 191</p>
+                </div>
+                <div>
+
+                    <p><a href="https://www.ulc-icam.com/admin@education-lms.com">contact@ulc-icam.com</a></p>
+                </div>
+            </div>
+            <div class="footer-right col-md-4 col-sm-6">
+                <h2> <span><img src="{{ asset('assets/img/ulc.png') }}" alt="Logo" width="72px"></span></h2>
+                <p class="menu">
+                    <a href="#"> Accueil</a> |
+                    <a href="#"> Services</a> |
+                    <a href="#"> Actualité</a> |
+                    <a href="#"> Contact</a>
+                </p>
+                <p class="name"> Ulc_Icam &copy; 2022</p>
+            </div>
+        </footer>
+        <!-- endFooter -->
+        {% block javascripts_2 %}
+        {% endblock %}
     </body>
 </html>
