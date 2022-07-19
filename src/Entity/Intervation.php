@@ -59,6 +59,9 @@ class Intervation
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $risque;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $etat;
+
     public function __construct()
     {
         $this->entretiens = new ArrayCollection();
@@ -295,6 +298,18 @@ class Intervation
     public function setRisque(?string $risque): self
     {
         $this->risque = $risque;
+
+        return $this;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?string $etat): self
+    {
+        $this->etat = $etat;
 
         return $this;
     }

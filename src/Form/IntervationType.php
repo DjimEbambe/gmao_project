@@ -30,7 +30,7 @@ class IntervationType extends AbstractType
             ])
             //->add('createdAt')
             ->add('equipement')
-            ->add('status', ChoiceType::class, [
+            ->add('etat', ChoiceType::class, [
                 'choices'  => [
                     'Encours' => "Encours",
                     'Fini' => "Fini",
@@ -65,8 +65,8 @@ class IntervationType extends AbstractType
                 'by_reference'=>false
             ])
             ->add('description', TextareaType::class)
-            ->add('risque', TextareaType::class)
-            ->add('epi', TextareaType::class)
+            ->add('risque', ChoiceType::class)
+            ->add('epi', ChoiceType::class)
 
 
         ;

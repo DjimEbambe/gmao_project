@@ -27,6 +27,7 @@
                     <td>
                         <a class="btn btn-primary btn-sm mt-1" href="{{ path('intervation_show', {'id': intervation.id}) }}">Voire</a>|
                         <a class="btn btn-sm btn-warning mt-1" href="{{ path('intervation_edit', {'id': intervation.id}) }}">Editer</a>
+                        <a class="btn btn-sm btn-warning mt-1" href="{{ path('intervation_pdf', {'id': intervation.id}) }}">Imprimer</a>
                     </td>
                 </tr>
             {% else %}

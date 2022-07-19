@@ -89,4 +89,15 @@ class IntervationController extends AbstractController
 
         return $this->redirectToRoute('intervation_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/pdf/{id}', name: 'intervation_pdf')]
+    public function pdf(Request $request, Intervation $intervation, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$intervation->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($intervation);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('intervation_index', [], Response::HTTP_SEE_OTHER);
+    }
 }
